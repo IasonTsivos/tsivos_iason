@@ -1,37 +1,45 @@
-// src/components/Card.jsx
-import React from 'react';
-import './Card.css'; // Assuming you'll create a separate CSS file for card styling
-import linkedinIcon from "../assets/icons/linkedin.svg";
-import github from "../assets/icons/github.svg";
+import React from "react";
+import "./Card.css";
 import profileImage from "../assets/icons/prof.png"; // Import the profile image
+import linkedinIcon from "../assets/icons/linkedin.svg"; // Import the LinkedIn SVG
+import githubIcon from "../assets/icons/github.svg"; // Import the GitHub SVG
 
-const Card = () => {
+const ProfileCard = () => {
   return (
-    <div className="fixed-card">
-      {/* Image */}
-      <div className="card-img">
+    <div className="profile-card">
+      {/* Top Half: Profile Image */}
+      <div className="profile-image-section">
         <img src={profileImage} alt="Tsivos Iason" className="profile-img" />
       </div>
 
-      {/* Name */}
-      <h2 className="card-name">TSIVOS IASON</h2>
+      {/* Bottom Half: Background with Text and Buttons */}
+      <div className="card-content">
+        <div className="card-text">
+          <h2>Tsivos Iason</h2>
+        </div>
 
-      {/* Description */}
-      <p className="card-description">
-        Computer and Software Engineer, passionate about technology and solving problems.
-      </p>
-
-      {/* Social Media Icons */}
-      <div className="social-icons">
-        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-          <img src={linkedinIcon} alt="LinkedIn" className="social-icon" />
-        </a>
-        <a href="https://github.com" target="_blank" rel="noopener noreferrer">
-          <img src={github} alt="GitHub" className="social-icon" />
-        </a>
+        {/* Social Media Buttons */}
+        <div className="social-buttons">
+          <a
+            href="https://www.linkedin.com/in/iasonas-tsivos-1b32b61b9/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-btn"
+          >
+            <img src={linkedinIcon} alt="LinkedIn" className="social-icon" />
+          </a>
+          <a
+            href="https://github.com/IasonTsivos"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-btn"
+          >
+            <img src={githubIcon} alt="GitHub" className="social-icon" />
+          </a>
+        </div>
       </div>
     </div>
   );
 };
 
-export default Card;
+export default ProfileCard;

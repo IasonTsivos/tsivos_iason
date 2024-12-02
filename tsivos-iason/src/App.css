@@ -1,5 +1,34 @@
 /* Restrict the size of the app */
 /* Make the right content area scrollable */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+/* Bold and Big H1 */
+.bold-h1 {
+  font-family: 'Poppins', sans-serif; /* Use Poppins font */
+  font-size: 5rem; /* Adjust size as needed */
+  font-weight: 700; /* Bold weight */
+  text-align: left; /* Center the text */
+  color: #ffffff; /* Dark color for contrast */
+  margin: 20px 0; /* Spacing around the heading */
+  text-transform: uppercase; /* Optional: make all text uppercase */
+  letter-spacing: 2px; /* Add spacing between letters for style */
+}
+
+.bold-h2 {
+  font-family: 'Poppins', sans-serif; /* Use Poppins font */
+  font-size: 5rem; /* Adjust size as needed */
+  font-weight: 700; /* Bold weight */
+  text-align: left; /* Center the text */
+  color: #9e4ae2; /* Base Galaxy Blue color */
+  margin-top: -15px; /* Spacing around the heading */
+  text-transform: uppercase; /* Optional: make all text uppercase */
+  background: linear-gradient(to right, #9e4ae2, #1B3C68);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; /* Makes the gradient visible */
+  letter-spacing: 2px; /* Add spacing between letters for style */
+}
+
+
 .app-container {
   margin-top: 70px;
   display: flex;
@@ -8,6 +37,7 @@
   overflow-x: hidden; /* Prevent horizontal overflow */
   height: 100vh; /* Full screen height */
 }
+
 
 body {
   margin: 0;
