@@ -8,10 +8,10 @@ function App() {
 
   return (
     <>
-    <Navbar />
-      <div className="app-container">
-        <div style={{ marginTop: '00px', textAlign: 'left' }}>
-          {/* Home Section */}
+      <Navbar />
+        {/* App Container (Scrollable content) */}
+        <div className="app-container">
+          <div style={{ marginTop: '00px', textAlign: 'left' }}>          {/* Home Section */}
           <HomeSection />
 
           {/* Education Section */}
@@ -30,28 +30,29 @@ function App() {
           <div style={{ marginTop: '50px', textAlign: 'center' }}>
             {/* Add any other content if needed */}
           </div>
-          </div>
+        </div>
         </div>
     </>
   );
 }
 
+
 const HomeSection = () => {
   return (
-    <section id="home" style={{ padding: '50px' }}>
-      <h1 className="bold-h1">
-        COMPUTER & SOFTWARE
-      </h1>
-      <h1 className="bold-h2">
-        ENGINEER
-      </h1>
-      <h3>
-        Tech enthusiast with love for learning and growing in the IT space. I enjoy tackling challenging problems and learning new technologies to enhance my skills. My curiosity drives me to constantly explore emerging trends, from cloud computing to Coding, and I strive to integrate them into practical solutions.
-        From working on Automating processes to creating VR environments, I’m driven by the belief that technology can solve real-world problems and transform the way we live and work.
-      </h3>
+    <section id="home" style={{ display: 'flex', padding: '50px', alignItems: 'center' }}>
+      {/* Text Section */}
+      <div style={{ flex: 1, marginRight: '20px' }}>
+        <h1 className="bold-h1">COMPUTER & SOFTWARE</h1>
+        <h1 className="bold-h2">ENGINEER</h1>
+        <h3>
+          Tech enthusiast with love for learning and growing in the IT space. I enjoy tackling challenging problems and learning new technologies to enhance my skills. My curiosity drives me to constantly explore emerging trends, from cloud computing to Coding, and I strive to integrate them into practical solutions.
+          From working on Automating processes to creating VR environments, I’m driven by the belief that technology can solve real-world problems and transform the way we live and work.
+        </h3>
+      </div>
     </section>
   );
 };
+
 
 const EducationSection = () => {
   return (
