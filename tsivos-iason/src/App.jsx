@@ -8,9 +8,8 @@ function App() {
 
   return (
     <>
+    <Navbar />
       <div className="app-container">
-        <Card />
-        <Navbar />
         <div style={{ marginTop: '00px', textAlign: 'left' }}>
           {/* Home Section */}
           <HomeSection />
@@ -31,8 +30,8 @@ function App() {
           <div style={{ marginTop: '50px', textAlign: 'center' }}>
             {/* Add any other content if needed */}
           </div>
+          </div>
         </div>
-      </div>
     </>
   );
 }
@@ -57,7 +56,12 @@ const HomeSection = () => {
 const EducationSection = () => {
   return (
     <section id="education" style={{ padding: '50px' }}>
-      <h2>Education Section</h2>
+      <h1 className="bold-h1">
+        MASTERS
+      </h1>
+      <h1 className="bold-h2">
+        DEGREE
+      </h1>
       {/* Add your education details here */}
     </section>
   );
@@ -66,7 +70,12 @@ const EducationSection = () => {
 const ProjectsSection = () => {
   return (
     <section id="projects" style={{ padding: '50px' }}>
-      <h2>Projects Section</h2>
+      <h1 className="bold-h1">
+        SELECTED
+      </h1>
+      <h1 className="bold-h2">
+        PROJECTS
+      </h1>
       {/* Add your project details here */}
     </section>
   );
@@ -75,7 +84,12 @@ const ProjectsSection = () => {
 const WorkSection = () => {
   return (
     <section id="work" style={{ padding: '50px' }}>
-      <h2>Work Section</h2>
+      <h1 className="bold-h1">
+        WORK
+      </h1>
+      <h1 className="bold-h2">
+        EXPERIENCE
+      </h1>
       {/* Add your work details here */}
     </section>
   );
@@ -84,7 +98,12 @@ const WorkSection = () => {
 const SkillsSection = () => {
   return (
     <section id="skills" style={{ padding: '50px' }}>
-      <h2>Skills Section</h2>
+      <h1 className="bold-h1">
+        TECH
+      </h1>
+      <h1 className="bold-h2">
+        SKILLS
+      </h1>
       {/* Add your skills details here */}
     </section>
   );
