@@ -6,6 +6,7 @@ import EducationSection from './components/EducationSection';
 import ProjectsSection from './components/ProjectsSection';
 import SmallCard from './components/SmallerCard';
 import TechCardGrid from "./components/TechCardGrid";
+import WorkSection from "./components/WorkSection";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -82,15 +83,6 @@ const HomeSection = () => {
 };
 
 
-const WorkSection = () => {
-  return (
-    <section id="work" style={{ padding: '50px' }}>
-      <h1 className="bold-h1">WORK</h1>
-      <h1 className="bold-h2">EXPERIENCE</h1>
-      {/* Add your work details here */}
-    </section>
-  );
-};
 
 const SkillsSection = () => {
   return (
