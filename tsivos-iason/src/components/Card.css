@@ -1,87 +1,82 @@
-/* Container for the whole card */
-.profile-card {
+/* Card Container */
+.card {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center the items horizontally */
+  padding: 0px; /* Remove extra padding */
+  border-radius: 10px;
+  width: 50vh;
+  height: 80vh; /* Adjusted height for top-bottom layout */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Box shadow */
+  margin: 50px auto; /* Center the card on the screen */
+  overflow: hidden; /* Prevent overflow from children */
+}
+
+/* Top Section (Profile Picture) */
+.card-top {
+  flex: 1; /* Takes up 50% of the height */
+  width: 100%; /* Full width */
   position: relative;
-  width: 400px;
-  height: 600px;
+}
+
+.profile-pic {
+  border: 2px solid #ccc;
+  width: 100%; /* Ensures the image fills the entire top section */
+  height: 100%; /* Ensures the image fills the entire top section */
+  object-fit: cover; /* Keeps the aspect ratio without distortion */
+  border-radius: 10px 10px 0 0; /* Rounded corners on the top side */
+}
+
+/* Bottom Section (Background Image + Social Media Icons) */
+.card-bottom {
+  flex: 1; /* Takes up 50% of the height */
+  width: 100%; /* Full width */
   display: flex;
-  flex-direction: column;
-  border-radius: 15px;
-  margin-top: 70px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  flex-shrink: 0; /* Prevent card from shrinking */
-}
-
-/* Top Half: Profile Image Section */
-.profile-image-section {
-  flex: 1;
-  background-color: #ffffff;
-  display: flex; /* Use flex instead of display: contents */
-  justify-content: center;
-  align-items: center;
-}
-
-.profile-image {
-  object-fit: cover;
-  width: 100%; /* Ensure image takes full width */
-  height: auto; /* Maintain aspect ratio */
-}
-
-/* Bottom Half: Content Section */
-.card-content {
-  flex: 1.2;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-size: cover;
+  flex-direction: column; /* Stack items vertically if needed */
+  justify-content: flex-end; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  background-image: url('../assets/icons/bg.jpg'); /* Background image */
+  background-size: cover; /* Ensures the background image covers the entire bottom section */
   background-position: center;
-  background-image: url("../assets/icons/bg.jpg"); /* Assuming local background */
-  flex-grow: 1; /* Allow the content section to grow */
-  overflow-y: auto; /* Allow vertical scrolling */
+  border-radius: 0 0 10px 10px; /* Rounded corners on the bottom side */
+  padding: 20px; /* Optional padding for spacing */
 }
 
-/* Text Styling */
-.card-text h2 {
-  font-family: 'Poppins', sans-serif;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin: 0;
-  text-align: center;
-  font-size: 1.5rem;
-}
-
-.card-text p {
-  margin: 10px 0;
-  text-align: center;
-  font-size: 0.9rem;
-}
-
-/* Social Buttons */
-.social-buttons {
+/* Social Media Icons */
+.social-icons {
   display: flex;
-  justify-content: center;
-  gap: 15px;
+  flex-direction: row;
+  margin-top: 10px;
+  gap: 10px;
 }
 
-.social-btn {
-  text-decoration: none;
-  padding: 8px 15px;
-  border-radius: 20px;
-  background-color: #9e4ae2; /* LinkedIn color */
-  color: white;
-  font-size: 0.8rem;
-  transition: background-color 0.3s ease;
+.social-icon {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  filter: invert(1); /* Optional: Adjust colors for visibility */
 }
 
-.social-btn:hover {
-  background-color: #9e4ae2;
+.social-icon:hover {
+  transform: scale(1.1);
 }
 
-.social-btn:nth-child(2) {
-  background-color: #9e4ae2; /* GitHub color */
+.location-info {
+  justify-content: start;
+  display: flex;
+  align-items: center; /* Vertically aligns the icon and text */
+  margin-bottom: 15px; /* Adds spacing between location info and social icons */
 }
 
-.social-btn:nth-child(2):hover {
-  background-color: #9e4ae2;
+.location-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px; /* Spacing between the icon and the text */
+  filter: invert(1);
+}
+
+.location-text {
+  font-size: 1rem;
+  color: #ffffff; /* Location text color */
 }

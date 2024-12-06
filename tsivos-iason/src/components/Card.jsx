@@ -1,45 +1,64 @@
 import React from "react";
 import "./Card.css";
-import profileImage from "../assets/icons/prof.png"; // Import the profile image
-import linkedinIcon from "../assets/icons/linkedin.svg"; // Import the LinkedIn SVG
-import githubIcon from "../assets/icons/github.svg"; // Import the GitHub SVG
+import githubIcon from "../assets/icons/github.svg";
+import li from "../assets/icons/linkedin.svg";
+import prf from "../assets/icons/prof.png";
+import ins from "../assets/icons/instagram.svg";
+import mp from "../assets/icons/map-pin.svg";
 
-const ProfileCard = () => {
+const Card = () => {
+  const handleRedirect = (url) => {
+    window.open(url, "_blank");
+  };
+
   return (
-    <div className="profile-card">
-      {/* Top Half: Profile Image */}
-      <div className="profile-image-section">
-        <img src={profileImage} alt="Tsivos Iason" className="profile-img" />
+    <div className="card">
+      {/* Top Section */}
+      <div className="card-top">
+        <img
+          src={prf} // Replace with your profile picture path
+          alt="Profile"
+          className="profile-pic"
+        />
       </div>
 
-      {/* Bottom Half: Background with Text and Buttons */}
-      <div className="card-content">
-        <div className="card-text">
-          <h2>Tsivos Iason</h2>
+      {/* Bottom Section */}
+      <div className="card-bottom">
+        {/* Icon and Text (Flex-Start) */}
+        <div>
+          <h4></h4>
+        </div>
+        <div className="location-info">
+          <img src={mp} alt="Location Icon" className="location-icon" />
+          <span className="location-text">Located in Athens, Greece</span>
         </div>
 
-        {/* Social Media Buttons */}
-        <div className="social-buttons">
-          <a
-            href="https://www.linkedin.com/in/iasonas-tsivos-1b32b61b9/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-btn"
-          >
-            <img src={linkedinIcon} alt="LinkedIn" className="social-icon" />
-          </a>
-          <a
-            href="https://github.com/IasonTsivos"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-btn"
-          >
-            <img src={githubIcon} alt="GitHub" className="social-icon" />
-          </a>
+        {/* Social Icons */}
+        <div className="social-icons">
+          <img
+            src={li}
+            alt="LinkedIn"
+            className="social-icon"
+            onClick={() =>
+              handleRedirect("https://www.linkedin.com/in/iasonas-tsivos-1b32b61b9/")
+            }
+          />
+          <img
+            src={githubIcon}
+            alt="GitHub"
+            className="social-icon"
+            onClick={() => handleRedirect("https://github.com/IasonTsivos")}
+          />
+          <img
+            src={ins}
+            alt="Instagram"
+            className="social-icon"
+            onClick={() => handleRedirect("https://www.instagram.com/iaswnas_/")}
+          />
         </div>
       </div>
     </div>
   );
 };
 
-export default ProfileCard;
+export default Card;

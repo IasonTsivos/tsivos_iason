@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
-import Card from './components/Card'; // Import Card Component
+import Card from './components/Card';
+import EducationSection from './components/EducationSection';
+import ProjectsSection from './components/ProjectsSection';
+import SmallCard from './components/SmallerCard';
+import TechCardGrid from "./components/TechCardGrid";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -9,33 +13,39 @@ function App() {
   return (
     <>
       <Navbar />
-        {/* App Container (Scrollable content) */}
-        <div className="app-container">
-          <div style={{ marginTop: '00px', textAlign: 'left' }}>          {/* Home Section */}
-          <HomeSection />
 
-          {/* Education Section */}
-          <EducationSection />
+      <div className="container">
+        {/* Left Section */}
+        <div className="left-section">
+          <Card />
+        </div>
 
-          {/* Projects Section */}
-          <ProjectsSection />
+        {/* Right Section */}
+        <div className="right-section">
+          <div style={{ marginTop: '20px', textAlign: 'left' }}>
+            {/* Home Section */}
+            <HomeSection />
+            <div className="section-divider" />
+            {/* Education Section */}
+            <EducationSection />
+            <div className="section-divider" />
 
-          {/* Work Section */}
-          <WorkSection />
+            {/* Projects Section */}
+            <ProjectsSection />
+            <div className="section-divider" />
 
-          {/* Skills Section */}
-          <SkillsSection />
+            {/* Work Section */}
+            <WorkSection />
+            <div className="section-divider" />
 
-          {/* Demo Content */}
-          <div style={{ marginTop: '50px', textAlign: 'center' }}>
-            {/* Add any other content if needed */}
+            {/* Skills Section */}
+            <SkillsSection />
           </div>
         </div>
-        </div>
+      </div>
     </>
   );
 }
-
 
 const HomeSection = () => {
   return (
@@ -44,53 +54,39 @@ const HomeSection = () => {
       <div style={{ flex: 1, marginRight: '20px' }}>
         <h1 className="bold-h1">COMPUTER & SOFTWARE</h1>
         <h1 className="bold-h2">ENGINEER</h1>
-        <h3>
-          Tech enthusiast with love for learning and growing in the IT space. I enjoy tackling challenging problems and learning new technologies to enhance my skills. My curiosity drives me to constantly explore emerging trends, from cloud computing to Coding, and I strive to integrate them into practical solutions.
-          From working on Automating processes to creating VR environments, I’m driven by the belief that technology can solve real-world problems and transform the way we live and work.
-        </h3>
+        <h4 className='h4'>
+          Tech enthusiast with love for learning and growing in the IT space. I enjoy tackling
+           challenging problems and learning new technologies to enhance my skills. My curiosity 
+           drives me to constantly explore emerging trends, from cloud computing to coding, 
+           I strive to integrate them into practical solutions.
+          From working on automating processes to creating VR environments, I’m driven by the 
+          belief that technology can solve real-world problems and transform the way we live and work.
+        </h4>
+        <section className="statistics-section">
+      <div className="stat">
+        <h1>7+</h1>
+        <p>YEARS OF EXPERIENCE</p>
+      </div>
+      <div className="stat">
+        <h1>4+</h1>
+        <p>COMPANIES TRUST</p>
+      </div>
+      <div className="stat">
+        <h1>20+</h1>
+        <p>WORLDWIDE CLIENTS</p>
+      </div>
+      </section>
       </div>
     </section>
   );
 };
 
 
-const EducationSection = () => {
-  return (
-    <section id="education" style={{ padding: '50px' }}>
-      <h1 className="bold-h1">
-        MASTERS
-      </h1>
-      <h1 className="bold-h2">
-        DEGREE
-      </h1>
-      {/* Add your education details here */}
-    </section>
-  );
-};
-
-const ProjectsSection = () => {
-  return (
-    <section id="projects" style={{ padding: '50px' }}>
-      <h1 className="bold-h1">
-        SELECTED
-      </h1>
-      <h1 className="bold-h2">
-        PROJECTS
-      </h1>
-      {/* Add your project details here */}
-    </section>
-  );
-};
-
 const WorkSection = () => {
   return (
     <section id="work" style={{ padding: '50px' }}>
-      <h1 className="bold-h1">
-        WORK
-      </h1>
-      <h1 className="bold-h2">
-        EXPERIENCE
-      </h1>
+      <h1 className="bold-h1">WORK</h1>
+      <h1 className="bold-h2">EXPERIENCE</h1>
       {/* Add your work details here */}
     </section>
   );
@@ -99,13 +95,10 @@ const WorkSection = () => {
 const SkillsSection = () => {
   return (
     <section id="skills" style={{ padding: '50px' }}>
-      <h1 className="bold-h1">
-        TECH
-      </h1>
-      <h1 className="bold-h2">
-        SKILLS
-      </h1>
+      <h1 className="bold-h1">TECH</h1>
+      <h1 className="bold-h2">SKILLS</h1>
       {/* Add your skills details here */}
+      <TechCardGrid />
     </section>
   );
 };

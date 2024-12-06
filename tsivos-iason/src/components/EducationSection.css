@@ -1,0 +1,46 @@
+.education-section {
+    padding: 50px;
+}
+  
+.image-text-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 30px; /* Add spacing between the text above and the image-text section */
+}
+  
+.image-container {
+    flex: 0.3; /* Image takes up one portion of the space */
+}
+  
+.section-image {
+    width: 35vh;
+    height: auto;
+    border-radius: 10px; /* Optional: Rounded corners */
+    object-fit: cover; /* Ensures the image fills its container */
+}
+  
+.text-container {
+    flex: 0.7; /* Text takes up one portion of the space */
+    text-align: left;
+}
+  
+.line1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+}
+  
+.line2 {
+    font-size: 1.4rem;
+    font-weight: normal;
+    color: #555; /* Optional: Muted color for the second line */
+    margin-top: 10px;
+    font-family: 'Poppins', sans-serif; /* Use Poppins font */
+    background: linear-gradient(to right, #9e4ae2, #1B3C68);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* Makes the gradient visible */
+}
+
+
+  
