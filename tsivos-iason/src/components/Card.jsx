@@ -5,6 +5,8 @@ import li from "../assets/icons/linkedin.svg";
 import prf from "../assets/icons/prof.png";
 import ins from "../assets/icons/instagram.svg";
 import mp from "../assets/icons/map-pin.svg";
+import user from "../assets/icons/user.svg";
+import info from "../assets/icons/info.svg";
 
 const Card = () => {
   const handleRedirect = (url) => {
@@ -25,8 +27,13 @@ const Card = () => {
       {/* Bottom Section */}
       <div className="card-bottom">
         {/* Icon and Text (Flex-Start) */}
-        <div>
-          <h4></h4>
+        <div className="location-info">
+          <img src={user} alt="Location Icon" className="location-icon" />
+          <span className="location-text">Tsivos Iason</span>
+        </div>
+        <div className="location-info">
+          <img src={info} alt="Location Icon" className="location-icon" />
+          <span className="location-text">Computer & Software Engineer</span>
         </div>
         <div className="location-info">
           <img src={mp} alt="Location Icon" className="location-icon" />

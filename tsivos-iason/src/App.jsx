@@ -7,6 +7,7 @@ import ProjectsSection from './components/ProjectsSection';
 import SmallCard from './components/SmallerCard';
 import TechCardGrid from "./components/TechCardGrid";
 import WorkSection from "./components/WorkSection";
+import Contact from './components/Contact';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -41,6 +42,11 @@ function App() {
 
             {/* Skills Section */}
             <SkillsSection />
+            
+            <div className="section-divider" />
+
+            {}
+            <Contact/>
           </div>
         </div>
       </div>
@@ -82,7 +88,7 @@ const HomeSection = () => {
   );
 };
 
-
+ 
 
 const SkillsSection = () => {
   return (

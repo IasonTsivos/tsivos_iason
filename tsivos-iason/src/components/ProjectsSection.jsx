@@ -19,7 +19,7 @@ const ProjectsSection = () => {
       image: image2,
       title: "Virtual Reality Museum with interactive exhibits & Programmed Guide",
       subtitle: "Unreal Engine Project",
-      link: "",
+      link: "https://drive.google.com/file/d/1Nd4L8OseKRtJt_NO_mIQ8gHU0xXWOHt4/view?usp=sharing",
     },
     
   ];
