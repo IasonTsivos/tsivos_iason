@@ -5,8 +5,8 @@ name: Deploy to Firebase Hosting on merge
 on:
   push:
     branches:
-      
-main# Change to 'main' if your main branch is named 'main'
+      -main
+ # Change to 'main' if your main branch is named 'main'
 
 jobs:
   build:
