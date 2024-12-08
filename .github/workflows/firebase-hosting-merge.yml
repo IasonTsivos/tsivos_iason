@@ -5,14 +5,36 @@ name: Deploy to Firebase Hosting on merge
 on:
   push:
     branches:
-      - main
+      - main  # Change to 'main' if your main branch is named 'main'
+
 jobs:
-  build_and_deploy:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - run: npm run build
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      # Step 1: Check out the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v4  # Using the latest version of setup-node
+        with:
+          node-version: '20'
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install  # Remove --legacy-peer-deps if it's not necessary
+
+      # Step 4: Build the Next.js project
+      - name: Build project
+        run: npm run build
+
+      # Step 5: Deploy to Firebase Hosting Live Channel
+      - name: Firebase Hosting Deploy (Live)
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        env:
+          CI: "" # Do not treat warnings as errors
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_WEBSITE_PORTFOLIO_E60B0 }}
