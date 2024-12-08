@@ -24,6 +24,7 @@
 }
 
 .container {
+  background-color: #2c2c2c;
   overflow: hidden;
   display: flex;
   height: 100vh; /* Full viewport height */
