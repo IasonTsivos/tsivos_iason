@@ -3,7 +3,7 @@ import './Navbar.css';
 import Home from "../assets/icons/home.svg";
 import Grad from "../assets/icons/grad.svg";
 import Code from "../assets/icons/code.svg";
-import bc from "../assets/icons/Briefcase.svg";
+import bc from "../assets/icons/briefcase.svg";
 import tools from "../assets/icons/tools.svg";
 
 const Navbar = () => {
