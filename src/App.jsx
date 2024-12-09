@@ -23,8 +23,8 @@ const firebaseConfig = {
   projectId: "website-portfolio-e60b0",
   storageBucket: "website-portfolio-e60b0.firebasestorage.app",
   messagingSenderId: "709844369354",
-  appId: "1:709844369354:web:a8c4f31eb7dcd6b72c9933",
-  measurementId: "G-QNY990LC0H"
+  appId: "1:709844369354:web:8ac25ffb70bb11082c9933",
+  measurementId: "G-L5MLZXPD70"
 };
 
 // Initialize Firebase

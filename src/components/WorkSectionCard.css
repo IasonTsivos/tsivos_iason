@@ -6,8 +6,8 @@
     border-radius: 8px;
     padding: 16px;
     margin: 12px 0;
-    width: 100%; /* Full width */
-    max-width: 600px; /* Limit the card's max width */
+    width: 700px;
+    max-width: 90%; /* Limit the card's max width */
     color: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     max-width: 90%;
