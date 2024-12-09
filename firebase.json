@@ -2,7 +2,8 @@
   "hosting": {
     "site": "website-portfolio-e60b0",
     "public": "public",
-    "ignore": [
+
+  "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
