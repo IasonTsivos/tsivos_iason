@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "website-portfolio-e60b0-3ea92",
+    "site": "website-portfolio-e60b0",
     "public": "public",
     "ignore": [
       "firebase.json",
