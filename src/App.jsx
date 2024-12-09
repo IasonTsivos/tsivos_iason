@@ -17,7 +17,7 @@ function App() {
       <Navbar />
 
       <div className="container">
-        {/* Left Section */}
+        {/* Left Section  */}
         <div className="left-section">
           <Card />
         </div>
