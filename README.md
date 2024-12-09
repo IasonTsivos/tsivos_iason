@@ -10,10 +10,9 @@
 <ul>
   <li><strong>Interactive Cards:</strong> Highlight projects, experiences, or skills with visually engaging card components.</li>
   <li><strong>Social Links:</strong> Add clickable icons that redirect to LinkedIn, GitHub, Instagram, or other platforms.</li>
-  <li><strong>Dynamic Work Section:</strong> Showcase multiple work experiences with images, titles, and descriptions. Each card links to the company’s website.</li>
+  <li><strong>Dynamic Sections:</strong> Showcase multiple experiences & images, titles, and descriptions. Each card links to the coresponding website.</li>
   <li><strong>Customizable Design:</strong> Easily update images, text, and colors to match your personal style or brand.</li>
   <li><strong>Responsive Layout:</strong> Fully optimized for desktop and mobile devices.</li>
-  <li><strong>"Let's Work Together" Section:</strong> A call-to-action section encouraging collaboration, with contact details and social links.</li>
   <li><strong>Hover Effects:</strong> Smooth transitions and animations for a modern look and feel.</li>
   <li><strong>Custom Favicon:</strong> Includes a custom favicon for branding.</li>
 </ul>
@@ -51,21 +50,8 @@ src/
 
 ---
 
-<h2>📸 Screenshots</h2>
-
-<h3>Home Page</h3>
-<img src="screenshots/home-page.png" alt="Home Page" style="max-width: 100%; border-radius: 8px;">
-
-<h3>Work Section</h3>
-<img src="screenshots/work-section.png" alt="Work Section" style="max-width: 100%; border-radius: 8px;">
-
-<h3>"Let's Work Together" Section</h3>
-<img src="screenshots/contact-section.png" alt="Contact Section" style="max-width: 100%; border-radius: 8px;">
-
----
-
 <h2>📧 Contact</h2>
 
 <p>
-  Feel free to reach out via email or connect on <a href="https://www.linkedin.com/">LinkedIn</a>. Let’s work together! 😊
+  Feel free to reach out via email or connect on <a href="=https://www.linkedin.com/in/iasonas-tsivos-1b32b61b9">LinkedIn</a>. Let’s work together! 😊
 </p>
