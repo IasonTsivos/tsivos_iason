@@ -9,6 +9,28 @@ import TechCardGrid from "./components/TechCardGrid";
 import WorkSection from "./components/WorkSection";
 import Contact from './components/Contact';
 
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyCj7geTuN0Le6CWqau-41oK6IVHyHE7sIk",
+  authDomain: "website-portfolio-e60b0.firebaseapp.com",
+  projectId: "website-portfolio-e60b0",
+  storageBucket: "website-portfolio-e60b0.firebasestorage.app",
+  messagingSenderId: "709844369354",
+  appId: "1:709844369354:web:a8c4f31eb7dcd6b72c9933",
+  measurementId: "G-QNY990LC0H"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
 function App() {
   const [count, setCount] = useState(0);
 
