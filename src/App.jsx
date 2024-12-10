@@ -2,12 +2,11 @@ import { useState } from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
 import Card from './components/Card';
-import EducationSection from './components/EducationSection';
-import ProjectsSection from './components/ProjectsSection';
-import SmallCard from './components/SmallerCard';
-import TechCardGrid from "./components/TechCardGrid";
 import WorkSection from "./components/WorkSection";
 import Contact from './components/Contact';
+import EducationSection from './components/EducationSection';
+import ProjectsSection from './components/ProjectsSection';
+import TechCardGrid from "./components/TechCardGrid";
 
 function App() {
   const [count, setCount] = useState(0);
