@@ -1,3 +1,4 @@
+
 .bold-h1 {
   font-family: 'Poppins', sans-serif; /* Use Poppins font */
   font-size: 3rem; /* Adjust size as needed */
@@ -31,6 +32,10 @@
   flex-direction: row; /* Default: left and right sections side by side */
 }
 
+.h4 {
+  color: white;
+}
+
 .left-section {
   margin-top: 30px;
   width: 35%; /* 35% width */
@@ -40,7 +45,7 @@
   }
 
 .right-section {
-  width: 65%; /* 65% width */
+  width: calc(100% - 35%); /* 65% width */
   margin-left: 35%; /* Offset to the right of the fixed section */
   overflow-y: auto; /* Enable vertical scrolling */
   height: 100%; /* Full height */
@@ -55,16 +60,18 @@
   }
 
   .left-section {
-    position: static; /* Reset fixed positioning */
-    width: 100%; /* Take full width */
-    height: auto; /* Adjust height based on content */
-    overflow: auto; /* Allow content to scroll if necessary */
-  }
+    position: relative; /* Reset fixed positioning */
+    width: 100%; /* Use full screen width */
+    height: auto; /* Adjust height dynamically based on content */
+    margin: 0 auto; /* Center the card */
+    }
+  
 
   .right-section {
     margin-left: 0; /* Reset left margin */
     width: 100%; /* Take full width */
     height: auto; /* Adjust height dynamically */
+    overflow: hidden;
   }
 }
 
