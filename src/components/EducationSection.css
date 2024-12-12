@@ -1,3 +1,4 @@
+/* Existing styles for larger screens */
 .education-section {
     padding: 50px;
 }
@@ -43,5 +44,26 @@
     -webkit-text-fill-color: transparent; /* Makes the gradient visible */
 }
 
+/* Media Query for Mobile Devices */
+@media (max-width: 768px) {
+    .image-container {
+        flex: 0.2; /* Adjust to take up more space on smaller screens */
+    }
 
-  
+    .section-image {
+        width: 20vh; /* Reduce image width for smaller screens */
+        height: auto; /* Maintain aspect ratio */
+    }
+
+    .text-container {
+        flex: 1; /* Text takes up more space relative to the image */
+    }
+
+    .line1 {
+        font-size: 1.6rem; /* Reduce font size for smaller screens */
+    }
+
+    .line2 {
+        font-size: 1.2rem; /* Reduce font size for smaller screens */
+    }
+}
