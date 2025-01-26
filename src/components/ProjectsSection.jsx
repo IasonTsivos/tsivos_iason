@@ -5,6 +5,7 @@ import CardComponent from './CardComponent';
 // Import your images
 import image1 from "../assets/icons/oil1.jpg";
 import image2 from "../assets/icons/vr.png";
+import image3 from "../assets/icons/image3.png";
 
 const ProjectsSection = () => {
   // Array of project data
@@ -14,6 +15,12 @@ const ProjectsSection = () => {
       title: "Application of IOT Technology and Cloud Computing for the Automation of Olive Oil Production Processes",
       subtitle: "Master's Thesis",
       link: "https://polynoe.lib.uniwa.gr/xmlui/handle/11400/6238?locale-attribute=en",
+    },
+    {
+      image: image3,
+      title: "Reactive Architectural Website",
+      subtitle: "JavaScript & CSS Project",
+      link: "https://visualization-2013c.web.app",
     },
     {
       image: image2,
