@@ -19,7 +19,7 @@ const ProjectsSection = () => {
     {
       image: image3,
       title: "Reactive Architectural Website",
-      subtitle: "JavaScript & CSS Project",
+      subtitle: "React & CSS Project",
       link: "https://visualization-2013c.web.app",
     },
     {

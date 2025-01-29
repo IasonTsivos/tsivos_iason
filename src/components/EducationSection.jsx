@@ -10,8 +10,8 @@ const EducationSection = () => {
 
   return (
     <section id="education" className="education-section">
-      <h1 className="bold-h1">MASTERS</h1>
-      <h1 className="bold-h2">DEGREE</h1>
+      <h1 className="bold-h1">Integrated</h1>
+      <h1 className="bold-h2">MASTER</h1>
 
       {/* Image and Text Section */}
       <div className="image-text-section">
