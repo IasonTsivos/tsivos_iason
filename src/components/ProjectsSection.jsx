@@ -20,7 +20,7 @@ const ProjectsSection = () => {
       image: image3,
       title: "Reactive Architectural Website",
       subtitle: "React & CSS Project",
-      link: "https://visualization-2013c.web.app",
+      link: "https://visualization.gr",
     },
     {
       image: image2,
