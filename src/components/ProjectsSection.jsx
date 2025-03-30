@@ -6,10 +6,17 @@ import CardComponent from './CardComponent';
 import image1 from "../assets/icons/oil1.jpg";
 import image2 from "../assets/icons/vr.png";
 import image3 from "../assets/icons/image3.png";
+import image4 from "../assets/icons/greek analytics.png"
 
 const ProjectsSection = () => {
   // Array of project data
   const projects = [
+    {
+      image: image4,
+      title: "Analytics Website based on Goverment & Eurpoean APIs",
+      subtitle: "TypeScript & Goverment API ",
+      link: "https://greek-analytics-web.web.app",
+    },
     {
       image: image1,
       title: "Application of IOT Technology and Cloud Computing for the Automation of Olive Oil Production Processes",
