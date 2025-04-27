@@ -7,6 +7,7 @@ import image1 from "../assets/icons/oil1.jpg";
 import image2 from "../assets/icons/vr.png";
 import image3 from "../assets/icons/image3.png";
 import image4 from "../assets/icons/greek analytics.png"
+import image5 from "../assets/icons/github qr.png"
 
 const ProjectsSection = () => {
   // Array of project data
@@ -22,6 +23,12 @@ const ProjectsSection = () => {
       title: "Application of IOT Technology and Cloud Computing for the Automation of Olive Oil Production Processes",
       subtitle: "Master's Thesis",
       link: "https://polynoe.lib.uniwa.gr/xmlui/handle/11400/6238?locale-attribute=en",
+    },
+    {
+      image: image5,
+      title: "Github themed QR Code Generator",
+      subtitle: "QR Code Generation Website",
+      link: "",
     },
     {
       image: image3,

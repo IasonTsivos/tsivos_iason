@@ -2,7 +2,7 @@ import React from "react";
 import "./Card.css";
 import githubIcon from "../assets/icons/github.svg";
 import li from "../assets/icons/linkedin.svg";
-import prf from "../assets/icons/prof.png";
+import prf from "../assets/icons/prof1.jpg";
 import ins from "../assets/icons/instagram.svg";
 import mp from "../assets/icons/map-pin.svg";
 import user from "../assets/icons/user.svg";
