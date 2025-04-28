@@ -16,7 +16,7 @@ const ProjectsSection = () => {
       image: image4,
       title: "Analytics Website based on Goverment & Eurpoean APIs",
       subtitle: "TypeScript & Goverment API ",
-      link: "https://greek-analytics-web.web.app",
+      link: "https://greek-analytics.gr",
     },
     {
       image: image1,
