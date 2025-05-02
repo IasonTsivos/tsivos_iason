@@ -24,12 +24,12 @@ const ProjectsSection = () => {
       subtitle: "Master's Thesis",
       link: "https://polynoe.lib.uniwa.gr/xmlui/handle/11400/6238?locale-attribute=en",
     },
-    {
+    /*{
       image: image5,
       title: "Github themed QR Code Generator",
       subtitle: "QR Code Generation Website",
       link: "",
-    },
+    },*/
     {
       image: image3,
       title: "Reactive Architectural Website",
