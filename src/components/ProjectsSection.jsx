@@ -8,10 +8,17 @@ import image2 from "../assets/icons/vr.png";
 import image3 from "../assets/icons/image3.png";
 import image4 from "../assets/icons/greek analytics.png"
 import image5 from "../assets/icons/github qr.png"
+import image6 from "../assets/icons/vision.jpg"
 
 const ProjectsSection = () => {
   // Array of project data
   const projects = [
+    {
+      image: image6,
+      title: "AI prompt sales platform",
+      subtitle: "Go and Typescript Project",
+      link: "https://www.jasonsvision.store",
+    },
     {
       image: image4,
       title: "Analytics Website based on Goverment & Eurpoean APIs",

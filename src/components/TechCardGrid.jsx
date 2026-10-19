@@ -14,6 +14,7 @@ import frb from "../assets/icons/Firebase.svg";
 import cs3 from "../assets/icons/css-3.svg";
 import jsl from "../assets/icons/logo-javascript.svg";
 
+
 const TechCardGrid = () => {
   const cards = [
     { icon: az, title: "Azure", subtitle: "Cloud Computing Services" },

@@ -5,8 +5,15 @@ import im2 from "../assets/icons/utg.png";
 import im3 from "../assets/icons/podimatas.png";
 import im4 from "../assets/icons/prcompany.png";
 import im5 from "../assets/icons/tempo.png";
+import knapp from "../assets/icons/knapp_logo.svg";
 
 const workItems = [
+  {
+      image: knapp,
+      title: "Knapp - Logistics Automation",
+      description: "Development & Automation Engineer",
+      link: "https://www.knapp.com", // Replace with the actual link
+    },
     {
       image: im1,
       title: "Avitron - Event Production",
