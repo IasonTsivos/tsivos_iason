@@ -1,0 +1,217 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+  /* A faint lift of grey, like Vercel's hero — no colour */
+  background: radial-gradient(ellipse 60% 50% at 30% 55%, #111 0%, var(--bg) 70%);
+}
+
+.hero-badge {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* Fallback card when WebGL isn't available */
+.hero-badge > .card {
+  position: absolute;
+  top: 50%;
+  right: 8vw;
+  transform: translateY(-50%);
+  margin: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 120px 24px 96px;
+  text-align: left;
+  pointer-events: none;
+}
+
+.hero-content > * {
+  max-width: 520px;
+}
+
+.hero-content a,
+.hero-content button {
+  pointer-events: auto;
+}
+
+.hero-eyebrow {
+  margin: 0 0 20px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.hero-title {
+  margin: 0;
+  font-size: inherit;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.hero-title .fold-text {
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+}
+
+/* Two-tone line: grey lead-in, the rotating word in the accent */
+.hero-building {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3em;
+  margin: 6px 0 0;
+  color: var(--muted);
+  max-width: none;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.hero-rotating {
+  color: var(--accent);
+}
+
+.hero-text {
+  margin: 28px 0 32px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* Small rectangular buttons */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.hero-content .hero-btn {
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.hero-content .hero-btn--primary {
+  border: 1px solid var(--text);
+  background-color: var(--text);
+  color: #000;
+}
+
+.hero-content .hero-btn--primary:hover {
+  background-color: #fff;
+  border-color: #fff;
+}
+
+.hero-content .hero-btn--ghost {
+  border: 1px solid var(--border-strong);
+  background-color: transparent;
+  color: var(--text);
+}
+
+.hero-content .hero-btn--ghost:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.hero-content .hero-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Stats */
+.hero-stats {
+  display: flex;
+  margin: 64px 0 0;
+  border-top: 1px solid var(--border);
+}
+
+.hero-stat {
+  display: flex;
+  flex-direction: column-reverse; /* dt comes first in the markup; show the number on top */
+  justify-content: flex-end;
+  flex: 1;
+  padding: 18px 20px 0;
+  border-left: 1px solid var(--border);
+}
+
+.hero-stat:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.hero-stat-value {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.hero-stat-label {
+  margin-top: 4px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-badge {
+    position: relative;
+    inset: auto;
+    height: 60vh;
+    margin-top: 64px; /* start below the nav bar */
+  }
+
+  .hero-badge > .card {
+    position: static;
+    transform: none;
+    margin: 80px auto 0;
+  }
+
+  .hero-content {
+    padding: 0 20px 64px;
+  }
+
+  .hero-text {
+    display: none;
+  }
+
+  /* Keep some breathing room now that the bio is hidden */
+  .hero-stats {
+    margin-top: 40px;
+  }
+
+  .hero-stat {
+    padding: 16px 12px 0;
+  }
+
+  .hero-stat-value {
+    font-size: 1.25rem;
+  }
+
+  .hero-stat-label {
+    font-size: 0.6rem;
+  }
+}

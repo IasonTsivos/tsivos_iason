@@ -1,37 +1,424 @@
 .projects-section {
-    padding: 50px;
-}
-  
-.card-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px; /* Spacing between cards */
+  position: relative;
+  padding: 160px 0;
 }
 
-/* Each card takes full width on mobile */
-.card-grid .card-container {
-    width: 100%;
-    max-width: 350px;
+/* Full-bleed track spanning the whole section; the ocean inside sticks to the viewport,
+   so the projects scroll over the water until the section ends and takes it away.
+   Body clips the 100vw overflow (index.css); overflow-x: clip keeps sticky working. */
+.proj-ocean-track {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  z-index: 0;
+  width: 100vw;
+  transform: translateX(-50%);
+  pointer-events: none;
 }
 
-/* Two cards per row on larger screens */
-@media (min-width: 768px) {
-    .card-grid {
-        justify-content: space-between;
-    }
-
-    .card-grid .card-container {
-        width: calc(50% - 10px);
-    }
+/* Soft top and bottom edges so it slides in and out of the black without a seam */
+.proj-ocean {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100lvh; /* stays full height when the mobile address bar collapses */
+  opacity: 0;
+  transition: opacity 1.4s ease;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 14%, #000 86%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 14%, #000 86%, transparent 100%);
 }
 
-/* On even larger screens, center the grid */
-@media (min-width: 1200px) {
-    .card-grid {
-        margin: 0 auto;
-        justify-content: left;
-    }
+.proj-ocean .dot-ocean {
+  width: 100%;
+  height: 100%;
 }
 
-  
+.projects-section.is-visible .proj-ocean {
+  opacity: 1;
+}
+
+/* Content sits above the water */
+.projects-section > .section-heading,
+.proj-list {
+  position: relative;
+  z-index: 1;
+}
+
+/* Rows separated by thin white lines */
+.proj-list {
+  margin-top: 72px;
+  border-top: 1px solid var(--border-strong);
+}
+
+.proj-row {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 64px;
+  align-items: center;
+  padding: 80px 0;
+}
+
+/* Movement is scrubbed by GSAP; this hint keeps it on the compositor */
+.proj-media,
+.proj-phone,
+.proj-text > * {
+  will-change: transform, opacity;
+}
+
+/* Alternate the mockup side */
+.proj-row--flip {
+  grid-template-columns: 2fr 3fr;
+}
+
+.proj-row--flip .proj-media {
+  order: 2;
+}
+
+/* Mobile apps: text on top, the row of phones underneath */
+.proj-row--phone {
+  grid-template-columns: 1fr;
+  gap: 48px;
+}
+
+.proj-row--phone .proj-media {
+  order: 2;
+}
+
+.proj-row--phone .proj-text {
+  max-width: 520px;
+}
+
+.proj-media {
+  min-width: 0;
+}
+
+.proj-media img {
+  filter: grayscale(1);
+  transition: filter 0.6s ease, object-position 4s ease;
+}
+
+.proj-row.is-active .proj-media img {
+  filter: none;
+}
+
+.proj-phones {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* VR headset with its caption centred underneath */
+.proj-frame {
+  margin: 0;
+}
+
+.proj-frame figcaption {
+  padding-top: 20px;
+  text-align: center;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+}
+
+/* Text block, in the same voice as the education timeline */
+.proj-text {
+  min-width: 0;
+}
+
+.proj-kind {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.proj-title {
+  margin: 0;
+  color: #ae57f6;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.proj-detail {
+  margin: 6px 0 16px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.proj-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 20px;
+  padding: 0;
+  list-style: none;
+}
+
+.proj-tags li {
+  padding: 3px 10px;
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+}
+
+/* CTA: a bordered button with a GitHub or web icon */
+.proj-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.proj-link .link-icon {
+  flex-shrink: 0;
+}
+
+.proj-link:hover {
+  border-color: var(--accent);
+  background-color: rgba(168, 85, 247, 0.08);
+  color: var(--accent);
+}
+
+.proj-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.proj-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Thesis: the printed book on the left, the research on the right */
+.proj-row--thesis {
+  grid-template-columns: 2fr 3fr;
+  align-items: start;
+}
+
+/* System pipeline: five stages on one line, with a pulse running from sensor to screen */
+.thesis-pipeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin: 8px 0 28px;
+  padding: 0;
+  list-style: none;
+}
+
+.thesis-pipeline li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  padding-top: 20px;
+}
+
+/* The track: each stage draws its own segment so the line runs through every node */
+.thesis-pipeline li::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 0;
+  right: -8px;
+  height: 1px;
+  background-color: var(--border-strong);
+}
+
+.thesis-pipeline li:last-child::before {
+  right: auto;
+  width: 9px;
+}
+
+.thesis-pipeline li::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  background-color: var(--bg);
+  transition: border-color 0.4s ease, background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.proj-row.is-active .thesis-pipeline li::after,
+.is-static .thesis-pipeline li::after {
+  border-color: var(--accent);
+  background-color: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* A reading travelling down the line once the row is active */
+.thesis-pipeline::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 0;
+  width: 48px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--accent));
+  opacity: 0;
+}
+
+.proj-row.is-active .thesis-pipeline::after {
+  animation: thesis-pulse 2.8s ease-in-out infinite;
+}
+
+@keyframes thesis-pulse {
+  0% { left: 0; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { left: calc(80% - 48px); opacity: 0; }
+}
+
+.thesis-node {
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+
+.thesis-role {
+  color: var(--muted);
+  font-size: 0.68rem;
+  line-height: 1.4;
+}
+
+/* Record details in a two-column grid between thin lines */
+.thesis-facts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px 24px;
+  margin: 0 0 24px;
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.thesis-facts dt {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+}
+
+.thesis-facts dd {
+  margin: 3px 0 0;
+  color: var(--text);
+  font-size: 0.8rem;
+}
+
+/* Reduced motion: no scroll effects, everything shown lit */
+.projects-section.is-static .proj-media img {
+  filter: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .proj-link,
+  .proj-media img,
+  .thesis-pipeline li::after {
+    transition: none;
+  }
+
+  .proj-row.is-active .thesis-pipeline::after {
+    animation: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-section {
+    padding: 96px 0;
+  }
+
+  .proj-list {
+    margin-top: 48px;
+  }
+
+  .proj-row,
+  .proj-row--flip,
+  .proj-row--thesis {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 56px 0;
+  }
+
+  .proj-row--flip .proj-media {
+    order: 0;
+  }
+
+  /* Phones scroll sideways instead of shrinking */
+  .proj-phones {
+    justify-content: flex-start;
+    margin: 0 -20px;
+    padding: 0 32px 8px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 32px; /* snap phones to the gutter, not the screen edge */
+    scrollbar-width: none;
+  }
+
+  /* Flex scrollers drop the trailing padding, so the last phone gets it as a margin instead */
+  .proj-phone:last-child {
+    margin-right: 32px;
+  }
+
+  .proj-phones::-webkit-scrollbar {
+    display: none;
+  }
+
+  .proj-phone {
+    scroll-snap-align: start;
+  }
+
+  /* The pipeline turns vertical: stages stacked along a line on the left */
+  .thesis-pipeline {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .thesis-pipeline li {
+    padding: 0 0 0 22px;
+  }
+
+  .thesis-pipeline li::before {
+    top: 9px;
+    left: 4px;
+    right: auto;
+    bottom: -14px;
+    width: 1px;
+    height: auto;
+  }
+
+  .thesis-pipeline li:last-child::before {
+    display: none;
+  }
+
+  .thesis-pipeline li::after {
+    top: 3px;
+  }
+
+  .thesis-pipeline::after {
+    display: none;
+  }
+}
+
+/* The bracket cursor's label speaks in the section's mono voice */
+.target-cursor__label {
+  font-family: var(--font-mono);
+  font-weight: 400;
+}

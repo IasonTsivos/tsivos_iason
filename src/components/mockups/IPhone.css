@@ -1,0 +1,23 @@
+/* devices.css draws the iPhone 14 Pro at a fixed 428 × 868px; the wrapper reserves the scaled size */
+.iphone {
+  --phone-scale: 0.52;
+  flex-shrink: 0;
+  width: calc(428px * var(--phone-scale));
+  height: calc(868px * var(--phone-scale));
+}
+
+.iphone .device {
+  transform: scale(var(--phone-scale));
+  transform-origin: top left;
+}
+
+.iphone .device-screen {
+  object-fit: cover;
+  object-position: top;
+}
+
+@media (max-width: 768px) {
+  .iphone {
+    --phone-scale: 0.38;
+  }
+}

@@ -1,0 +1,30 @@
+.section-heading {
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.section-heading-label {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.section-heading-title {
+  margin: 0;
+  font-size: inherit;
+  line-height: 1.15;
+}
+
+.section-heading-title .fold-text {
+  letter-spacing: -0.045em;
+  line-height: 1.15;
+}
+
+.section-heading-subtitle {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.15;
+}

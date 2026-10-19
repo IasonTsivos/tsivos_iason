@@ -1,55 +1,144 @@
 .navbar {
-    position: fixed;
-    top: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 30px;
-    background-color: rgba(31, 31, 31, 0.9);
-    padding: 15px 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.navbar--scrolled {
+  background-color: rgba(10, 10, 10, 0.6);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  border-bottom-color: var(--border);
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  max-width: 1200px;
+  height: 64px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Reset the global button styles from index.css */
+.navbar button {
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.navbar-logo {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+  box-shadow: 0 0 18px var(--accent-glow);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navbar .navbar-link {
+  padding: 6px 12px;
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.875rem;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.navbar .navbar-link:hover {
+  color: var(--text);
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.navbar-icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  transition: background-color 0.15s ease;
+}
+
+.navbar-icon:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.navbar-icon img {
+  width: 18px;
+  height: 18px;
+  filter: invert(1);
+  opacity: 0.8;
+}
+
+.navbar .navbar-cta {
+  margin-left: 6px;
+  padding: 7px 16px;
+  border-radius: 999px;
+  background-color: var(--text);
+  color: #0a0a0a;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.navbar .navbar-cta:hover {
+  background-color: #fff;
+  box-shadow: 0 0 0 4px var(--accent-glow);
+}
+
+.navbar button:focus-visible,
+.navbar a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Only show the ring for keyboard focus, not after a mouse click */
+.navbar button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .navbar-links {
+    display: none;
   }
-  
-  .nav-item {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+  .navbar-inner {
+    padding: 0 16px;
   }
-  
-  .nav-icon {
-    width: 25px;
-    height: 25px;
-    cursor: pointer;
-    transition: transform 0.2s;
-    filter: invert(1);
-  }
-  
-  .nav-icon:hover {
-    transform: scale(1.1);
-  }
-  
-  .nav-title {
-    position: absolute;
-    top: 50px; /* Start higher (hidden above the text's target) */
-    font-size: 12px;
-    color: #fff;
-    background-color: rgba(49, 47, 47, 0.8); /* Tooltip background */
-    padding: 5px 10px;
-    border-radius: 5px;
-    white-space: nowrap;
-    visibility: hidden;
-    opacity: 0;
-    transform: translateY(-10px); /* Start "above" the target position */
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    pointer-events: none; /* Avoid interfering with hover */
-  }
-  
-  .nav-item:hover .nav-title {
-    visibility: visible;
-    opacity: 1;
-    transform: translateY(0); /* Drop to the final position */
-  }
-  
+}
