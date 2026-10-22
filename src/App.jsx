@@ -6,7 +6,7 @@ import WorkSection from "./components/WorkSection";
 import Contact from './components/Contact';
 import EducationSection from './components/EducationSection';
 import ProjectsSection from './components/ProjectsSection';
-import TechCardGrid from "./components/TechCardGrid";
+import SkillsSection from "./components/SkillsSection";
 import { startSmoothScroll } from "./utils/scroll";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -28,7 +28,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+getAnalytics(app);
 function App() {
   useEffect(() => startSmoothScroll(), []);
 
@@ -47,23 +47,11 @@ function App() {
         <div className="section-divider" />
 
         <SkillsSection />
-        <div className="section-divider" />
 
         <Contact />
       </main>
     </>
   );
 }
-
-const SkillsSection = () => {
-  return (
-    <section id="skills" style={{ padding: '50px' }}>
-      <h1 className="bold-h1">TECH</h1>
-      <h1 className="bold-h2">SKILLS</h1>
-      {/* Add your skills details here */}
-      <TechCardGrid />
-    </section>
-  );
-};
 
 export default App;

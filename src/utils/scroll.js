@@ -41,3 +41,9 @@ export const scrollToSection = (id) => {
   if (lenis) lenis.scrollTo(target, { offset: id === "home" ? 0 : -NAV_OFFSET });
   else target.scrollIntoView({ behavior: "smooth" });
 };
+
+// Scroll to an absolute page position, eased through Lenis when it is running
+export const scrollToY = (y) => {
+  if (lenis) lenis.scrollTo(y);
+  else window.scrollTo({ top: y, behavior: "smooth" });
+};

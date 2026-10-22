@@ -1,4 +1,3 @@
-import React from "react";
 import "./Card.css";
 import githubIcon from "../assets/icons/github.svg";
 import li from "../assets/icons/linkedin.svg";
