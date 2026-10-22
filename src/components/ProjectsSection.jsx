@@ -11,6 +11,7 @@ import LinkIcon from "./mockups/LinkIcon";
 import TargetCursor from "./reactbits/TargetCursor/TargetCursor";
 import DotOcean from "./backgrounds/DotOcean/DotOcean";
 import useInView from "../utils/useInView";
+import aspisVideo from "../assets/projects/aspisjiujitsu.mp4";
 import greekAnalytics from "../assets/projects/greekanalytics.jpg";
 import jasonsVision from "../assets/projects/jasonsvision.jpg";
 import vrMuseum from "../assets/projects/vr.png";
@@ -26,7 +27,20 @@ import oilThesis from "../assets/projects/oil1.jpg";
 gsap.registerPlugin(ScrollTrigger);
 
 // frame: "mac" (website), "vision" (VR headset), "phone" (mobile app), "thesis" (research document)
+// wide: the mockup spans the full row with the text above it
 const projects = [
+  {
+    frame: "mac",
+    wide: true,
+    kind: "Web platform",
+    title: "Aspis Jiu Jitsu",
+    detail: "Platform for a Brazilian Jiu-Jitsu academy in Greece.",
+    tags: ["Web platform"],
+    video: aspisVideo,
+    images: [{ alt: "Walkthrough of the Aspis Jiu Jitsu platform" }],
+    url: "aspisjiujitsu.gr",
+    link: { href: "https://aspisjiujitsu.gr", label: "Visit site" },
+  },
   {
     frame: "mac",
     kind: "Website · TypeScript",
@@ -151,11 +165,13 @@ const ProjectText = ({ kind, title, detail, tags, link }) => (
 );
 
 // Every mockup is a target for the section's bracket cursor, labelled with the project name
-const ProjectMedia = ({ frame, images, url, kind, title }) => {
+const ProjectMedia = ({ frame, images, video, url, link, kind, title }) => {
   if (frame === "mac") {
     return (
       <MacWindow
         src={images[0].src}
+        video={video}
+        href={video ? link.href : undefined}
         alt={images[0].alt}
         url={url}
         className="cursor-target"
@@ -267,7 +283,9 @@ const ProjectsSection = () => {
         {projects.map((project, index) => (
           <article
             key={project.title}
-            className={`proj-row proj-row--${project.frame}${project.frame !== "phone" && index % 2 ? " proj-row--flip" : ""}`}
+            className={`proj-row proj-row--${project.frame}${project.wide ? " proj-row--wide" : ""}${
+              project.frame !== "phone" && !project.wide && index % 2 ? " proj-row--flip" : ""
+            }`}
           >
             <div className="proj-media">
               <ProjectMedia {...project} />

@@ -89,6 +89,20 @@
   max-width: 520px;
 }
 
+/* Featured website: text on top, the window across the full row underneath */
+.proj-row--wide {
+  grid-template-columns: 1fr;
+  gap: 48px;
+}
+
+.proj-row--wide .proj-media {
+  order: 2;
+}
+
+.proj-row--wide .proj-text {
+  max-width: 520px;
+}
+
 .proj-media {
   min-width: 0;
 }
