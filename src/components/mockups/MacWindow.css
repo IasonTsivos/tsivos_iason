@@ -1,0 +1,113 @@
+/* Rounded like a real macOS window; the lower part fades out into the page background */
+.mac-window {
+  overflow: hidden;
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+  background-color: var(--surface);
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+}
+
+.mac-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 12px;
+  border-bottom: 1px solid var(--border-strong);
+}
+
+.mac-lights {
+  position: absolute;
+  left: 12px;
+  display: flex;
+  gap: 7px;
+}
+
+.mac-lights span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #3f3f46;
+  transition: background-color 0.4s ease;
+}
+
+/* The lights take their colour once the surrounding row is active */
+.is-active .mac-lights span:nth-child(1) { background-color: #ff5f57; }
+.is-active .mac-lights span:nth-child(2) { background-color: #febc2e; }
+.is-active .mac-lights span:nth-child(3) { background-color: #28c840; }
+
+.mac-url {
+  max-width: 60%;
+  overflow: hidden;
+  padding: 2px 14px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mac-screen {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background-color: var(--bg);
+}
+
+/* Hovering pans down the screenshot to show more of the page */
+.mac-screen img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: object-position 4s ease;
+}
+
+.mac-window:hover .mac-screen img {
+  object-position: bottom;
+}
+
+/* Video: the full recording stays visible, so no fade at the bottom */
+.mac-window--video {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+/* The recordings (Aspis, Greek Analytics) share one capture setup with black bars around the page:
+   a 1856×928 area at (42, 108) of the 1920×1080 frame. The screen takes that 2:1 shape and the video is scaled and shifted so only that area shows. */
+.mac-window--video .mac-screen {
+  position: relative;
+  aspect-ratio: 2 / 1;
+}
+
+.mac-screen video {
+  position: absolute;
+  top: -11.638%; /* 108 / 928 */
+  left: -2.263%; /* 42 / 1856 */
+  display: block;
+  width: 103.448%; /* 1920 / 1856 */
+  height: auto;
+  max-width: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mac-screen img,
+  .mac-lights span {
+    transition: none;
+  }
+}
+
+/* Linked windows: block-level like the plain window, with a focus ring for keyboard users */
+a.mac-window {
+  display: block;
+  color: inherit;
+}
+
+a.mac-window:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}

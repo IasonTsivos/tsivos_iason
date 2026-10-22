@@ -1,0 +1,103 @@
+.skills-section {
+  padding: 160px 0;
+}
+
+/* Full-bleed and tall so the wall has room beyond the 1200px page column;
+   body clips the 100vw overflow (index.css) */
+.skills-wall {
+  position: relative;
+  left: 50%;
+  width: 100vw;
+  height: 780px;
+  margin-top: 48px;
+  transform: translateX(-50%);
+}
+
+/* The component only fades the top; mirror it so the bottom dissolves the same way */
+.skills-wall .drift-wall {
+  --dw-fade-in: calc(100% - var(--dw-edge));
+  -webkit-mask-image:
+    radial-gradient(ellipse 78% 82% at 50% 50%, #000 var(--dw-edge), transparent 100%),
+    linear-gradient(to bottom, transparent 0%, #000 var(--dw-fade-in), #000 var(--dw-edge), transparent 100%);
+  mask-image:
+    radial-gradient(ellipse 78% 82% at 50% 50%, #000 var(--dw-edge), transparent 100%),
+    linear-gradient(to bottom, transparent 0%, #000 var(--dw-fade-in), #000 var(--dw-edge), transparent 100%);
+}
+
+/* Logo tiles: the logo sits centred above its name instead of filling the tile like a photo */
+.skills-wall .drift-wall__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid var(--border-strong);
+  background-color: var(--surface);
+}
+
+/* Lighter tint on resting tiles so the logos stay bright */
+.skills-wall .drift-wall__overlay {
+  opacity: 0.12;
+}
+
+.skills-wall .drift-wall__tile.is-active .drift-wall__overlay {
+  opacity: 0;
+}
+
+.skills-wall .drift-wall__tile img {
+  width: auto;
+  height: 46px;
+  object-fit: contain;
+}
+
+.skills-wall .drift-wall__caption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.skills-wall .drift-wall__title {
+  color: var(--text);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.skills-wall .drift-wall__subtitle {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+}
+
+.skills-wall .drift-wall__tile.is-active .drift-wall__inner {
+  border-color: var(--accent);
+}
+
+@media (max-width: 768px) {
+  .skills-section {
+    padding: 96px 0;
+  }
+
+  .skills-wall {
+    height: 560px;
+    margin-top: 24px;
+  }
+
+  /* Small tiles: smaller logo and name, no subtitle */
+  .skills-wall .drift-wall__inner {
+    gap: 6px;
+    border-radius: 10px;
+  }
+
+  .skills-wall .drift-wall__tile img {
+    height: 28px;
+  }
+
+  .skills-wall .drift-wall__title {
+    font-size: 0.68rem;
+  }
+
+  .skills-wall .drift-wall__subtitle {
+    display: none;
+  }
+}

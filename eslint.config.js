@@ -17,7 +17,7 @@ export default [
         sourceType: 'module',
       },
     },
-    settings: { react: { version: '18.3' } },
+    settings: { react: { version: '19.0' } },
     plugins: {
       react,
       'react-hooks': reactHooks,
@@ -33,6 +33,13 @@ export default [
         'warn',
         { allowConstantExport: true },
       ],
+    },
+  },
+  {
+    // Badge components use default params instead of propTypes
+    files: ['src/components/Badge/**/*.{js,jsx}', 'src/components/reactbits/**/*.{js,jsx}', 'src/components/SectionHeading.jsx', 'src/components/ProjectsSection.jsx', 'src/components/mockups/**/*.{js,jsx}', 'src/components/backgrounds/**/*.{js,jsx}'],
+    rules: {
+      'react/prop-types': 'off',
     },
   },
 ]

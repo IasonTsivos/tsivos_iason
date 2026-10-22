@@ -1,8 +1,462 @@
 .work-section {
+  position: relative;
+  padding: 160px 0 0;
+}
+
+/* Full-bleed stage, pinned to the screen while the reel scrolls through it.
+   Margins (not a transform) centre it, so the pin keeps it in place. */
+.work-stage {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  height: 100lvh;
+  margin-left: calc(50% - 50vw);
+  overflow: hidden;
+}
+
+/* The scope screen sits behind everything and fades out at the top and bottom */
+.work-scope {
+  position: absolute;
+  inset: 0;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 82%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 82%, transparent 100%);
+}
+
+/* Gutters that line the reel up with the 1200px page column */
+.work-hud,
+.work-scrubber {
+  position: absolute;
+  left: max(24px, calc(50vw - 576px));
+  right: max(24px, calc(50vw - 576px));
+  z-index: 2;
+}
+
+.work-hud {
+  top: 88px; /* below the fixed navbar */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.work-rec {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+}
+
+.work-rec-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #ff3b30;
+  box-shadow: 0 0 10px rgba(255, 59, 48, 0.8);
+  animation: work-blink 1.2s steps(2, jump-none) infinite;
+}
+
+@keyframes work-blink {
+  50% { opacity: 0.2; }
+}
+
+.work-timecode {
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The reel: one panel per job in a row, moved sideways by GSAP */
+.work-track {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  width: max-content;
+  height: 100%;
+  margin: 0;
+  padding: 0 max(24px, calc(50vw - 576px));
+  list-style: none;
+  will-change: transform;
+}
+
+.work-panel {
+  position: relative;
+  box-sizing: border-box;
+  width: min(520px, 70vw);
+  padding: 32px;
+  overflow: hidden;
+  border: 1px solid var(--border-strong);
+  border-radius: 16px;
+  background-color: rgba(10, 10, 12, 0.72);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  opacity: 0.45;
+  transform: scale(0.94);
+  transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.work-panel.is-live {
+  border-color: var(--accent);
+  opacity: 1;
+  transform: scale(1);
+  box-shadow: 0 30px 80px -30px var(--accent-glow), inset 0 0 0 1px rgba(168, 85, 247, 0.15);
+}
+
+/* Huge outlined number in the corner, lit when the panel is live */
+.work-index {
+  position: absolute;
+  top: -28px;
+  right: -8px;
+  color: transparent;
+  font-size: 11rem;
+  font-weight: 700;
+  letter-spacing: -0.06em;
+  line-height: 1;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+  user-select: none;
+  transition: -webkit-text-stroke-color 0.5s ease;
+}
+
+.work-panel.is-live .work-index {
+  -webkit-text-stroke-color: rgba(168, 85, 247, 0.45);
+}
+
+.work-panel-top {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 36px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+}
+
+/* Camera tally light: red when this camera is on air */
+.work-tally {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #3f3f46;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.work-panel.is-live .work-tally {
+  background-color: #ff3b30;
+  box-shadow: 0 0 12px rgba(255, 59, 48, 0.9);
+}
+
+.work-cam {
+  color: var(--text);
+}
+
+.work-kind {
+  color: var(--muted);
+}
+
+.work-logo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 64px;
+  margin-bottom: 24px;
+}
+
+.work-logo img {
+  max-width: 220px;
+  max-height: 64px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.work-logo img.is-dark {
+  filter: invert(1);
+}
+
+.work-company {
+  position: relative;
+  margin: 0;
+  color: var(--text);
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.work-role {
+  position: relative;
+  margin: 6px 0 0;
+  color: #ae57f6;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.work-detail {
+  position: relative;
+  margin: 4px 0 24px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.work-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.work-link:hover {
+  border-color: var(--accent);
+  background-color: rgba(168, 85, 247, 0.08);
+  color: var(--accent);
+}
+
+.work-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Scrubber along the bottom of the stage */
+.work-scrubber {
+  bottom: 48px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+}
+
+.work-scrubber-head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.work-scrubber-live {
+  color: var(--accent);
+}
+
+.work-scrubber-rail {
+  position: relative;
+  height: 1px;
+  background-color: var(--border-strong);
+}
+
+.work-playhead {
+  position: absolute;
+  top: -14px;
+  left: 0;
+  width: 2px;
+  height: 29px;
+  margin-left: -1px;
+  background-color: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
+  pointer-events: none;
+}
+
+.work-playhead::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: 10px;
+  height: 6px;
+  border-radius: 2px;
+  background-color: var(--accent);
+}
+
+/* Cue markers: a tick on the rail with the company underneath */
+.work-cue {
+  position: absolute;
+  top: -8px;
+  width: 24px;
+  height: 17px;
+  margin-left: -12px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.work-cue::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 11px;
+  width: 1px;
+  height: 9px;
+  background-color: var(--muted);
+  transition: background-color 0.3s ease;
+}
+
+.work-cue-label {
+  position: absolute;
+  top: 22px;
+  left: 50%;
+  color: var(--muted);
+  white-space: nowrap;
+  transform: translateX(-50%);
+  transition: color 0.3s ease;
+}
+
+.work-cue:first-of-type .work-cue-label {
+  left: 0;
+  transform: none;
+}
+
+.work-cue:last-child .work-cue-label {
+  left: auto;
+  right: 0;
+  transform: none;
+}
+
+.work-cue:hover .work-cue-label,
+.work-cue.is-live .work-cue-label {
+  color: var(--text);
+}
+
+.work-cue.is-live::before {
+  background-color: var(--accent);
+}
+
+.work-cue:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Phones: the same reel as a sideways swipe. HUD on top, panels snapping to the centre,
+   the scrubber underneath; everything flows in the page instead of being pinned. */
+@media (max-width: 768px) {
+  .work-section {
+    padding-top: 96px;
+  }
+
+  .work-stage {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 24px;
-    gap: 16px;
+    gap: 20px;
+    height: auto;
+    padding: 8px 0 24px;
   }
-  
+
+  .work-hud,
+  .work-scrubber {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    margin: 0 20px;
+  }
+
+  .work-hud-title {
+    display: none;
+  }
+
+  /* Panels are 84vw wide; 8vw of padding each side lets the first and last one centre too */
+  .work-track {
+    gap: 12px;
+    width: auto;
+    height: auto;
+    padding: 12px 8vw;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+
+  .work-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .work-panel {
+    flex-shrink: 0;
+    width: 84vw;
+    padding: 22px;
+    scroll-snap-align: center;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background-color: rgba(10, 10, 12, 0.85);
+  }
+
+  .work-panel-top {
+    margin-bottom: 24px;
+  }
+
+  .work-kind {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .work-index {
+    top: -18px;
+    font-size: 6.5rem;
+  }
+
+  .work-logo {
+    height: 48px;
+    margin-bottom: 18px;
+  }
+
+  .work-logo img {
+    max-width: 170px;
+    max-height: 48px;
+  }
+
+  .work-company {
+    font-size: 1.3rem;
+  }
+
+  /* Six names don't fit under the rail on a phone: ticks only, the live name sits above */
+  .work-cue-label {
+    display: none;
+  }
+
+  .work-cue {
+    top: -12px;
+    height: 25px;
+  }
+
+  .work-cue::before {
+    top: 8px;
+  }
+}
+
+.work-section--static .work-stage {
+  height: auto;
+}
+
+.work-section--static .work-hud,
+.work-section--static .work-scrubber {
+  display: none;
+}
+
+.work-section--static .work-track {
+  flex-direction: column;
+  gap: 20px;
+  width: auto;
+  padding: 24px max(24px, calc(50vw - 576px));
+}
+
+.work-section--static .work-panel {
+  width: 100%;
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-rec-dot {
+    animation: none;
+  }
+}

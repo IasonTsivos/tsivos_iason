@@ -1,42 +1,69 @@
-import React from 'react';
-import './Navbar.css';
-import Home from "../assets/icons/home.svg";
-import Grad from "../assets/icons/grad.svg";
-import Code from "../assets/icons/code.svg";
-import bc from "../assets/icons/briefcase.svg";
-import tools from "../assets/icons/tools.svg";
+import { useEffect, useState } from "react";
+import "./Navbar.css";
+import githubIcon from "../assets/icons/github.svg";
+import linkedinIcon from "../assets/icons/linkedin.svg";
+import { scrollToSection } from "../utils/scroll";
+
+const links = [
+  { id: "education", label: "Education" },
+  { id: "projects", label: "Projects" },
+  { id: "work", label: "Work" },
+  { id: "skills", label: "Skills" },
+];
 
 const Navbar = () => {
-  const handleScroll = (id) => {
-    const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" }); // Smooth scrolling
-    }
-  };
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <div className="navbar">
-      <div className="nav-item" onClick={() => handleScroll('home')}>
-        <img src={Home} alt="Home Icon" className="nav-icon" />
-        <span className="nav-title">Home</span>
+    <nav className={`navbar${scrolled ? " navbar--scrolled" : ""}`}>
+      <div className="navbar-inner">
+        <button type="button" className="navbar-brand" onClick={() => scrollToSection("home")}>
+          <span className="navbar-logo">IT</span>
+          <span className="navbar-name">Tsivos Iason</span>
+        </button>
+
+        <ul className="navbar-links">
+          {links.map(({ id, label }) => (
+            <li key={id}>
+              <button type="button" className="navbar-link" onClick={() => scrollToSection(id)}>
+                {label}
+              </button>
+            </li>
+          ))}
+        </ul>
+
+        <div className="navbar-actions">
+          <a
+            className="navbar-icon"
+            href="https://github.com/IasonTsivos"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="GitHub"
+          >
+            <img src={githubIcon} alt="" />
+          </a>
+          <a
+            className="navbar-icon"
+            href="https://www.linkedin.com/in/iasonas-tsivos-1b32b61b9/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn"
+          >
+            <img src={linkedinIcon} alt="" />
+          </a>
+          <button type="button" className="navbar-cta" onClick={() => scrollToSection("contact")}>
+            Contact
+          </button>
+        </div>
       </div>
-      <div className="nav-item" onClick={() => handleScroll('education')}>
-        <img src={Grad} alt="Graduation Icon" className="nav-icon" />
-        <span className="nav-title">Education</span>
-      </div>
-      <div className="nav-item" onClick={() => handleScroll('projects')}>
-        <img src={Code} alt="Code Icon" className="nav-icon" />
-        <span className="nav-title">Projects</span>
-      </div>
-      <div className="nav-item" onClick={() => handleScroll('work')}>
-        <img src={bc} alt="Briefcase Icon" className="nav-icon" />
-        <span className="nav-title">Work</span>
-      </div>
-      <div className="nav-item" onClick={() => handleScroll('skills')}>
-        <img src={tools} alt="Tools Icon" className="nav-icon" />
-        <span className="nav-title">Skills</span>
-      </div>
-    </div>
+    </nav>
   );
 };
 
