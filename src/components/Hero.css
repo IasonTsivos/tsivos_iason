@@ -4,7 +4,6 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  border-bottom: 1px solid var(--border);
   /* A faint lift of grey, like Vercel's hero — no colour */
   background: radial-gradient(ellipse 60% 50% at 30% 55%, #111 0%, var(--bg) 70%);
 }

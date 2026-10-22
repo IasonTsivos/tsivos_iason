@@ -77,8 +77,8 @@
   mask-image: none;
 }
 
-/* The recording has black bars around the page: a 1856×928 area at (42, 108) of the 1920×1080
-   frame. The screen takes that 2:1 shape and the video is scaled and shifted so only that area shows. */
+/* The recordings (Aspis, Greek Analytics) share one capture setup with black bars around the page:
+   a 1856×928 area at (42, 108) of the 1920×1080 frame. The screen takes that 2:1 shape and the video is scaled and shifted so only that area shows. */
 .mac-window--video .mac-screen {
   position: relative;
   aspect-ratio: 2 / 1;

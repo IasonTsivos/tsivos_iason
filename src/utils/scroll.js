@@ -7,6 +7,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Height of the fixed navbar, so sections land just below it
 const NAV_OFFSET = 64;
+// Breathing room between the navbar and a section's heading after a nav jump
+const HEADING_GAP = 32;
 
 let lenis = null;
 
@@ -35,11 +37,21 @@ export const startSmoothScroll = () => {
   };
 };
 
+// Sections carry generous top padding, so jumps land on the section's heading instead:
+// it ends up just under the navbar rather than below a band of empty space
 export const scrollToSection = (id) => {
-  const target = document.getElementById(id);
-  if (!target) return;
-  if (lenis) lenis.scrollTo(target, { offset: id === "home" ? 0 : -NAV_OFFSET });
-  else target.scrollIntoView({ behavior: "smooth" });
+  const section = document.getElementById(id);
+  if (!section) return;
+  if (id === "home") {
+    if (lenis) lenis.scrollTo(section);
+    else section.scrollIntoView({ behavior: "smooth" });
+    return;
+  }
+
+  const target = section.querySelector(".section-heading") ?? section;
+  const y = target.getBoundingClientRect().top + window.scrollY - NAV_OFFSET - HEADING_GAP;
+  if (lenis) lenis.scrollTo(y);
+  else window.scrollTo({ top: y, behavior: "smooth" });
 };
 
 // Scroll to an absolute page position, eased through Lenis when it is running

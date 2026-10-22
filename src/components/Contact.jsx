@@ -1,6 +1,7 @@
 import "./Contact.css";
 import SectionHeading from "./SectionHeading";
 import BounceCards from "./reactbits/BounceCards/BounceCards";
+import useIsMobile from "../utils/useIsMobile";
 
 const EMAIL = "iaswnas_t@outlook.com";
 
@@ -69,44 +70,49 @@ const openChannel = (index) => {
   }
 };
 
-const Contact = () => (
-  <section id="contact" className="contact-section">
-    <SectionHeading label="Contact" title="Let's work together" subtitle="open to projects and opportunities" />
+// Phones get a smaller, tighter fan that fits the screen width
+const FAN = {
+  desktop: { containerWidth: 520, containerHeight: 300, cardSize: 170, spread: 130, pushDistance: 70, borderWidth: 3 },
+  mobile: { containerWidth: 320, containerHeight: 190, cardSize: 100, spread: 82, pushDistance: 36, borderWidth: 2 },
+};
 
-    {/* Fanned cards: hover spreads them apart, click opens the channel */}
-    <div className="contact-cards">
-      <BounceCards
-        images={channels}
-        onCardClick={openChannel}
-        containerWidth={520}
-        containerHeight={300}
-        cardSize={170}
-        spread={130}
-        rotation={10}
-        arc={0}
-        pushDistance={70}
-        hoverScale={1.08}
-        bounciness={0.6}
-        animationDelay={0.3}
-        animationStagger={0.08}
-        borderWidth={3}
-        borderColor="rgba(255, 255, 255, 0.22)"
-        radius={20}
-        shadow
-        enableHover
-        style={{ maxWidth: "100%" }}
-      />
-    </div>
+const Contact = () => {
+  const fan = useIsMobile() ? FAN.mobile : FAN.desktop;
 
-    <p className="contact-description">
-      I&apos;m excited to collaborate and bring ideas to life. Reach out for opportunities, projects, or just a chat.
-    </p>
+  return (
+    <section id="contact" className="contact-section">
+      <SectionHeading label="Contact" title="Let's work together" subtitle="open to projects and opportunities" />
 
-    {/* The address in plain text too, so it can be copied */}
-    <p className="contact-fallback">
-      <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
-    </p>
-  </section>
-);
+      {/* Fanned cards: hover spreads them apart, click opens the channel */}
+      <div className="contact-cards">
+        <BounceCards
+          images={channels}
+          onCardClick={openChannel}
+          {...fan}
+          rotation={10}
+          arc={0}
+          hoverScale={1.08}
+          bounciness={0.6}
+          animationDelay={0.3}
+          animationStagger={0.08}
+          borderColor="rgba(255, 255, 255, 0.22)"
+          radius={20}
+          shadow
+          enableHover
+          style={{ maxWidth: "100%" }}
+        />
+      </div>
+
+      <p className="contact-description">
+        I&apos;m excited to collaborate and bring ideas to life. Reach out for opportunities, projects, or just a chat.
+      </p>
+
+      {/* The address in plain text too, so it can be copied */}
+      <p className="contact-fallback">
+        <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+      </p>
+    </section>
+  );
+};
 
 export default Contact;

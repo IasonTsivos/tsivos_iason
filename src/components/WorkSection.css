@@ -334,42 +334,102 @@
   outline-offset: 2px;
 }
 
-/* Phones and reduced motion: no reel, the jobs stack down the page, all on air */
+/* Phones: the same reel as a sideways swipe. HUD on top, panels snapping to the centre,
+   the scrubber underneath; everything flows in the page instead of being pinned. */
 @media (max-width: 768px) {
   .work-section {
     padding-top: 96px;
   }
 
   .work-stage {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     height: auto;
+    padding: 8px 0 24px;
   }
 
   .work-hud,
   .work-scrubber {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    margin: 0 20px;
+  }
+
+  .work-hud-title {
     display: none;
   }
 
+  /* Panels are 84vw wide; 8vw of padding each side lets the first and last one centre too */
   .work-track {
-    flex-direction: column;
-    gap: 20px;
+    gap: 12px;
     width: auto;
-    padding: 24px 20px;
+    height: auto;
+    padding: 12px 8vw;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+
+  .work-track::-webkit-scrollbar {
+    display: none;
   }
 
   .work-panel {
-    width: 100%;
-    padding: 24px;
-    opacity: 1;
-    transform: none;
+    flex-shrink: 0;
+    width: 84vw;
+    padding: 22px;
+    scroll-snap-align: center;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background-color: rgba(10, 10, 12, 0.85);
+  }
+
+  .work-panel-top {
+    margin-bottom: 24px;
+  }
+
+  .work-kind {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .work-index {
-    font-size: 8rem;
+    top: -18px;
+    font-size: 6.5rem;
   }
 
-  .work-panel .work-tally {
-    background-color: #ff3b30;
-    box-shadow: 0 0 12px rgba(255, 59, 48, 0.9);
+  .work-logo {
+    height: 48px;
+    margin-bottom: 18px;
+  }
+
+  .work-logo img {
+    max-width: 170px;
+    max-height: 48px;
+  }
+
+  .work-company {
+    font-size: 1.3rem;
+  }
+
+  /* Six names don't fit under the rail on a phone: ticks only, the live name sits above */
+  .work-cue-label {
+    display: none;
+  }
+
+  .work-cue {
+    top: -12px;
+    height: 25px;
+  }
+
+  .work-cue::before {
+    top: 8px;
   }
 }
 

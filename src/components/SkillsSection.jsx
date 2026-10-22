@@ -1,6 +1,7 @@
 import "./SkillsSection.css";
 import SectionHeading from "./SectionHeading";
 import DriftWall from "./reactbits/DriftWall/DriftWall";
+import useIsMobile from "../utils/useIsMobile";
 import azure from "../assets/icons/azure-2.svg";
 import cpp from "../assets/icons/cpp_logo.svg";
 import react from "../assets/icons/react-2.svg";
@@ -27,34 +28,38 @@ const skills = [
   { image: git, title: "Git", subtitle: "Version control" },
 ];
 
-// Logo tiles drifting on a tilted wall; hovering a tile lifts it out and stops its column
-const SkillsSection = () => (
-  <section id="skills" className="skills-section">
-    <SectionHeading label="Skills" title="Tech stack" subtitle="languages, tools and platforms" />
+// Desktop: a wide wall of large tiles. Phones: three narrow columns sized to fit the screen,
+// a gentler angle and lighter edge fade, and no pointer-follow tilt (there is no hover on touch).
+const WALL = {
+  desktop: { columns: 5, tileWidth: 220, tileHeight: 146, gap: 20, tilt: 16, turn: -8, parallax: 0.6, fade: 0.35 },
+  mobile: { columns: 3, tileWidth: 104, tileHeight: 76, gap: 10, tilt: 12, turn: -4, parallax: 0, fade: 0.2 },
+};
 
-    <div className="skills-wall">
-      <DriftWall
-        items={skills}
-        captions
-        columns={5}
-        tileWidth={220}
-        tileHeight={146}
-        gap={20}
-        tilt={16}
-        turn={-8}
-        perspective={1200}
-        depth={120}
-        speed={36}
-        direction="up"
-        variance={0.45}
-        parallax={0.6}
-        lift={64}
-        fade={0.35}
-        dim={0.9}
-        overlayColor="#000000"
-      />
-    </div>
-  </section>
-);
+// Logo tiles drifting on a tilted wall; hovering a tile lifts it out and stops its column
+const SkillsSection = () => {
+  const wall = useIsMobile() ? WALL.mobile : WALL.desktop;
+
+  return (
+    <section id="skills" className="skills-section">
+      <SectionHeading label="Skills" title="Tech stack" subtitle="languages, tools and platforms" />
+
+      <div className="skills-wall">
+        <DriftWall
+          items={skills}
+          captions
+          {...wall}
+          perspective={1200}
+          depth={120}
+          speed={36}
+          direction="up"
+          variance={0.45}
+          lift={64}
+          dim={0.9}
+          overlayColor="#000000"
+        />
+      </div>
+    </section>
+  );
+};
 
 export default SkillsSection;

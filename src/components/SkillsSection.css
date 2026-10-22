@@ -79,6 +79,25 @@
   }
 
   .skills-wall {
-    height: 520px;
+    height: 560px;
+    margin-top: 24px;
+  }
+
+  /* Small tiles: smaller logo and name, no subtitle */
+  .skills-wall .drift-wall__inner {
+    gap: 6px;
+    border-radius: 10px;
+  }
+
+  .skills-wall .drift-wall__tile img {
+    height: 28px;
+  }
+
+  .skills-wall .drift-wall__title {
+    font-size: 0.68rem;
+  }
+
+  .skills-wall .drift-wall__subtitle {
+    display: none;
   }
 }

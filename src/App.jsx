@@ -41,10 +41,8 @@ function App() {
         <EducationSection />
 
         <ProjectsSection />
-        <div className="section-divider" />
 
         <WorkSection />
-        <div className="section-divider" />
 
         <SkillsSection />
 

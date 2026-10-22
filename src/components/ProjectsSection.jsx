@@ -12,7 +12,7 @@ import TargetCursor from "./reactbits/TargetCursor/TargetCursor";
 import DotOcean from "./backgrounds/DotOcean/DotOcean";
 import useInView from "../utils/useInView";
 import aspisVideo from "../assets/projects/aspisjiujitsu.mp4";
-import greekAnalytics from "../assets/projects/greekanalytics.jpg";
+import greekAnalyticsVideo from "../assets/projects/greek-analytics.mp4";
 import jasonsVision from "../assets/projects/jasonsvision.jpg";
 import vrMuseum from "../assets/projects/vr.png";
 import cakeHome from "../assets/projects/caketimehomescreen.png";
@@ -47,7 +47,8 @@ const projects = [
     title: "Greek Analytics",
     detail: "Analytics website built on Greek government and European open-data APIs.",
     tags: ["TypeScript", "Government APIs", "EU APIs"],
-    images: [{ src: greekAnalytics, alt: "Greek Analytics home page" }],
+    video: greekAnalyticsVideo,
+    images: [{ alt: "Walkthrough of the Greek Analytics website" }],
     url: "greek-analytics.gr",
     link: { href: "https://greek-analytics.gr", label: "Visit site" },
   },

@@ -71,4 +71,21 @@
   .contact-section {
     padding: 96px 0;
   }
+
+  .contact-cards {
+    margin-top: 24px;
+  }
+
+  .contact-cards .bounce-cards__card {
+    gap: 8px;
+  }
+
+  .contact-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .bounce-cards__label {
+    font-size: 0.68rem;
+  }
 }

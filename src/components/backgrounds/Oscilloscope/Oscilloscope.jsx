@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
 import "./Oscilloscope.css";
 
-// Three traces: the bright signal, a softer harmonic and a faint white reference
+// Three white traces: the bright signal, a softer harmonic and a faint reference
 const TRACES = [
-  { color: "168, 85, 247", alpha: 0.95, width: 2, freq: 1, speed: 1.4, amp: 1, glow: 18 },
-  { color: "124, 58, 237", alpha: 0.55, width: 1.5, freq: 2.3, speed: -0.9, amp: 0.55, glow: 10 },
+  { color: "255, 255, 255", alpha: 0.9, width: 2, freq: 1, speed: 1.4, amp: 1, glow: 14 },
+  { color: "255, 255, 255", alpha: 0.4, width: 1.5, freq: 2.3, speed: -0.9, amp: 0.55, glow: 8 },
   { color: "255, 255, 255", alpha: 0.18, width: 1, freq: 0.6, speed: 0.5, amp: 0.35, glow: 0 },
 ];
 

@@ -6,6 +6,7 @@ import SectionHeading from "./SectionHeading";
 import LinkIcon from "./mockups/LinkIcon";
 import Oscilloscope from "./backgrounds/Oscilloscope/Oscilloscope";
 import { scrollToY } from "../utils/scroll";
+import useIsMobile from "../utils/useIsMobile";
 import knapp from "../assets/icons/knapp_logo.svg";
 import avitron from "../assets/icons/avitron.png";
 import utg from "../assets/icons/utg.png";
@@ -95,6 +96,14 @@ const WorkSection = () => {
   const [active, setActive] = useState(0);
   // Reduced motion: no pinning or sideways reel, the jobs are listed down the page
   const [reduced] = useState(() => window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  const isMobile = useIsMobile();
+
+  // The HUD reads the same on both layouts: playhead, timecode and the live camera
+  const showProgress = (progress) => {
+    playheadRef.current.style.left = `${progress * 100}%`;
+    timecodeRef.current.textContent = timecode(progress);
+    setActive(Math.round(progress * (jobs.length - 1)));
+  };
 
   // Desktop: the stage pins and the reel of jobs scrolls sideways under it, scrubbed by the page
   // scroll. The track leans with the scroll speed and the HUD (playhead, timecode, CAM counter) follows.
@@ -120,9 +129,7 @@ const WorkSection = () => {
           invalidateOnRefresh: true,
           onUpdate: (self) => {
             velocity = self.getVelocity();
-            playheadRef.current.style.left = `${self.progress * 100}%`;
-            timecodeRef.current.textContent = timecode(self.progress);
-            setActive(Math.round(self.progress * (jobs.length - 1)));
+            showProgress(self.progress);
           },
         },
       });
@@ -146,11 +153,55 @@ const WorkSection = () => {
     return () => mm.revert();
   }, [reduced]);
 
+  // Phones: the reel is a native sideways swipe with the panels snapping to the centre.
+  // Its scroll position drives the HUD, and the swipe speed drives the scope.
+  useEffect(() => {
+    if (reduced || !isMobile) return undefined;
+    const track = trackRef.current;
+    let lastLeft = track.scrollLeft;
+    let lastTime = performance.now();
+    let frame = 0;
+
+    const update = () => {
+      frame = 0;
+      const now = performance.now();
+      const speed = ((track.scrollLeft - lastLeft) / Math.max(1, now - lastTime)) * 1000;
+      lastLeft = track.scrollLeft;
+      lastTime = now;
+      energyRef.current = Math.max(energyRef.current, Math.min(3, Math.abs(speed) / 1500));
+      const max = track.scrollWidth - track.clientWidth;
+      showProgress(max > 0 ? track.scrollLeft / max : 0);
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    const settle = () => {
+      energyRef.current *= 0.9;
+    };
+
+    track.addEventListener("scroll", onScroll, { passive: true });
+    gsap.ticker.add(settle);
+    update();
+
+    return () => {
+      cancelAnimationFrame(frame);
+      track.removeEventListener("scroll", onScroll);
+      gsap.ticker.remove(settle);
+      energyRef.current = 0;
+    };
+  }, [isMobile, reduced]);
+
   // Scrubber markers jump the reel to that job
   const cue = (index) => {
+    const share = index / (jobs.length - 1);
+    if (isMobile) {
+      const track = trackRef.current;
+      track.scrollTo({ left: share * (track.scrollWidth - track.clientWidth), behavior: "smooth" });
+      return;
+    }
     const trigger = triggerRef.current;
     if (!trigger) return;
-    scrollToY(trigger.start + (index / (jobs.length - 1)) * (trigger.end - trigger.start));
+    scrollToY(trigger.start + share * (trigger.end - trigger.start));
   };
 
   return (

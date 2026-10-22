@@ -32,13 +32,6 @@
   text-align: left;
 }
 
-.section-divider {
-  height: 1px;
-  margin: 0;
-  border: none;
-  background-color: var(--border);
-}
-
 @media (max-width: 768px) {
   .page {
     padding: 0 20px;
